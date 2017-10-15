@@ -8,7 +8,10 @@ def get_raw_file_list():
 	# Gets the home directory for starting file traversal
 	home = os.path.expanduser("~")
 	
-	movieFileFormats = [".mkv" , ".flv", ".vob" , ".avi" , ".mp4" , ".mov" , ".mpg" , ".wmv" , ".mpeg" , ".vob" , ".mpg" ]  # Non exhaustive list of video file formats
+	# write the list to a text file
+	textFile = open("RawMovieList.txt","w")
+
+	movieFileFormats = [".mkv" , ".flv", ".vob" , ".avi" , ".mp4" , ".mov" , ".mpg" , ".wmv" , ".mpeg" , ".vob" , ".mpg" , ".dat"]  # Non exhaustive list of video file formats
 	# Traversing the whlole file system to find files
 	for root, dirs, files in os.walk(home, topdown=False):
 	    for filename in files:
@@ -24,11 +27,13 @@ def get_raw_file_list():
 	        	if(filename.lower().endswith(extension)):
 	        		if(filesize>300):			# Filesize should be greater than 300 MB
 	        			mediaFiles.append(filename)	# add the filename to the list of movies
+	        			textFile.write(filename)	# Write the list to a file
+	        			textFile.write("\n")
 	        			break
 
+	textFile.close()
 	return mediaFiles
 
 
 movieFiles = get_raw_file_list()
-print movieFiles
 

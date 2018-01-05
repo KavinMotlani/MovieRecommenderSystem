@@ -13,7 +13,7 @@ def get_raw_file_list():
 
 	movieFileFormats = [".mkv" , ".flv", ".vob" , ".avi" , ".mp4" , ".mov" , ".mpg" , ".wmv" , ".mpeg" , ".vob" , ".mpg" , ".dat"]  # Non exhaustive list of video file formats
 	# Traversing the whlole file system to find files
-	for root, dirs, files in os.walk(home, topdown=False):
+	for root, dirs, files in os.walk("/", topdown=False):
 	    for filename in files:
 	    	# Getting file size of the file
 	        path = os.path.join(root, filename)
